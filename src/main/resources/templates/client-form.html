@@ -6,18 +6,18 @@
 </head>
 <body>
 	<p>
-		<input type="text" id="client" name="client" placeholder="取引先名（前方一致）"> 
-		<button id="ajax">検索</button>
-
-		<br>
+		<input type="text" id="client" name="client" placeholder="取引先名（前方一致）">
+		<button id="ajax-boot">検索</button>
+		<br> 
 		<select id="selecter" name="client-select"></select>
 	</p>
 
+	<!-- jQueryを使って、ajaxで非同期のリクエストを送るソースです。 -->>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script type="text/javascript">
 	$(function(){
         // Ajax button click
-        $('#ajax').on('click',function(){
+        $('#ajax-boot').on('click',function(){
             $.ajax({
                 url:'selecter',
                 type:'GET',
