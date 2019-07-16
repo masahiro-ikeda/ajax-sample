@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>取引先選択画面</title>
+</head>
+<body>
+	<p>
+		<input type="text" id="client" name="client" placeholder="取引先名（前方一致）"> 
+		<button id="ajax">検索</button>
+
+		<br>
+		<select id="selecter" name="client-select"></select>
+	</p>
+
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(function(){
+        // Ajax button click
+        $('#ajax').on('click',function(){
+            $.ajax({
+                url:'selecter',
+                type:'GET',
+                data:{
+                    'client':$('#client').val()
+                }
+            })
+            // Ajaxリクエストが成功した時発動
+            .done( (data) => {
+            	const result = JSON.parse(data);
+            	$('#selecter option').remove();
+            	for(let line of result) {
+            		$('#selecter').append($('<option>').text(line.clientName).attr('value', line.clientId));
+            	}
+            })
+            // Ajaxリクエストが失敗した時発動
+            .fail( (data) => {
+                alert("通信エラー");
+            })
+        });
+    });
+	</script>
+</body>
+</html>
